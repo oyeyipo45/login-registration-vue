@@ -4,10 +4,8 @@
 			<h3 class="customer-signup-heading">Create an account</h3>
 			<img src="/assets/icons/close.svg" alt="" class="customer-signup-close" />
 		</div>
-		<span > <error class="error"  v-if="error" :error="error" />  </span>
+		<span> <error class="error" v-if="error" :error="error" /> </span>
 		<form action="" @submit.prevent="handleSubmit">
-			
-
 			<div class="customer-signup-form-group">
 				<input
 					type="text"
@@ -66,6 +64,7 @@ export default {
 			firstName: '',
 			lastName: '',
 			email: '',
+			image: null,
 			password: '',
 			passwordConfirm: '',
 			error: '',
@@ -73,24 +72,29 @@ export default {
 	},
 
 	components: {
-		Error
+		Error,
 	},
 	methods: {
 		async handleSubmit() {
+			
+			
 			try {
 				const data = {
-				firstName: this.firstName,
-				lastName: this.lastName,
-				email: this.email,
-				password: this.password,
-				passwordConfirm: this.passwordConfirm,
-			};
-			await axios.post('/', data);
+					firstName: this.firstName,
+					lastName: this.lastName,
+					email: this.email,
+					password: this.password,
+					passwordConfirm: this.passwordConfirm,
+				};
+				await axios.post('/', data);
 
-			this.$router.push('/login');
+				console.log(data);
+				this.$router.push('/login');
 			} catch (e) {
-				this.error = e.response.data
+				this.error = e.response.data;
 			}
+
+			
 		},
 	},
 };

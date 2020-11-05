@@ -2,8 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import './axios';
-import store from "./vuex";
-import VueScrollReveal from 'vue-scroll-reveal';
+import store from './vuex';
 
 Vue.config.productionTip = false;
 
@@ -12,9 +11,6 @@ new Vue({
 	store,
 	render: (h) => h(App),
 }).$mount('#app');
-
-
-
 
 const showMenu = (toggleId, navId) => {
 	const toggle = document.getElementById(toggleId),
@@ -40,8 +36,3 @@ function linkAction() {
 }
 
 navLink.forEach((n) => n.addEventListener('click', linkAction));
-
-
-
-Vue.use(VueScrollReveal);
-

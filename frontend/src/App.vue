@@ -11,7 +11,6 @@ import Nav from './components/Nav.vue';
 export default {
 	name: 'App',
 
-	
 	components: {
 		Nav,
 	},
@@ -104,9 +103,9 @@ img {
 	display: block;
 }
 
-.error{
+.error {
 	height: 4rem;
-	padding: .5rem 0rem;
+	padding: 0.5rem 0rem;
 	color: red;
 	background-color: pink;
 	display: flex;

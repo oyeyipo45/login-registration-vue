@@ -1,7 +1,12 @@
 <template>
 	<header class="l-header">
 		<nav class="nav bd-grid">
-			<div>
+			<div v-if="profile">
+				<router-link to="/dashboard" class="nav_logo"
+					><h2>Patricia</h2></router-link
+				>
+			</div>
+			<div v-if="!profile">
 				<router-link to="/" class="nav_logo"><h2>Patricia</h2></router-link>
 			</div>
 			<div class="nav__menu" id="nav-menu" v-if="!profile">

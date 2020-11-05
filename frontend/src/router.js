@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
+import Dashboard from './components/Dashboard';
 
 Vue.use(Router);
 
@@ -13,6 +14,7 @@ export default new Router({
 		{ path: '/', component: Home },
 		{ path: '/login', component: Login },
 		{ path: '/register', component: Register },
-		{ path: '/user-info', component: Profile },
+        { path: '/user-info', component: Profile },
+        { path: '/dashboard', component: Dashboard },
 	],
 });

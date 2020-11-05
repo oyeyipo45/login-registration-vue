@@ -58,7 +58,7 @@ export default {
 				});
 				localStorage.setItem('token', response.data.token);
 				this.$store.dispatch('profile', response.data);
-				this.$router.push('/');
+				this.$router.push('/dashboard');
 				
 			} catch (e) {
 				this.error = e.response.data;

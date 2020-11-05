@@ -1,18 +1,20 @@
 <template>
 	<div class="home-page">
 		<div class="welcome-container">
-			<h3 class="welcome-message">
-				Hello, Please Sign In or Register
+			<h3>
+				Hello, {{ profile.firstName }} {{ profile.lastName }}
 			</h3>
-
 			<p><i class="bx bxs-up-arrow-circle bx-flashing"></i></p>
 		</div>
-
-		<h1 class="home-message">
-			<h1 class="glitch" data-text="Welcome Back">
-				Welcome Back
+		<h1
+		
+			class="home-message"
+		>
+			<h1 class="glitch" data-text="Dashboard">
+				Dashboard
 			</h1>
 		</h1>
+		
 	</div>
 </template>
 
@@ -21,8 +23,8 @@ import { mapGetters } from 'vuex';
 
 import axios from 'axios';
 export default {
-	name: 'Home',
-	async created() {
+	name: 'Dashboard',
+  async created() {
 		const response = await axios.get('/profile');
 		this.$store.dispatch('profile', response.data);
 	},
@@ -80,33 +82,30 @@ export default {
 		width: 95%;
 	}
 
-	.glitch {
-		position: relative;
-		color: black;
-		font-size: 2rem;
-		letter-spacing: 3px;
-		animation: glitch-skew 1s infinite linear alternate-reverse;
-	}
+ .glitch {
+	position: relative;
+	color: black;
+	font-size: 2rem;
+	letter-spacing: 3px;
+	animation: glitch-skew 1s infinite linear alternate-reverse;
+}
 }
 
 @media screen and (min-width: 489px) {
-	.glitch {
-		position: relative;
-		color: black;
-		font-size: 2.5rem;
-		letter-spacing: 3px;
-		animation: glitch-skew 1s infinite linear alternate-reverse;
-	}
-}
+.glitch {
+	position: relative;
+	color: black;
+	font-size: 2.5rem;
+	letter-spacing: 3px;	animation: glitch-skew 1s infinite linear alternate-reverse;
+} }
 @media screen and (min-width: 699px) {
-	.glitch {
-		position: relative;
-		color: black;
-		font-size: 4rem;
-		letter-spacing: 3px;
-		animation: glitch-skew 1s infinite linear alternate-reverse;
-	}
-}
+.glitch {
+	position: relative;
+	color: black;
+	font-size: 4rem;
+	letter-spacing: 3px;
+	animation: glitch-skew 1s infinite linear alternate-reverse;
+} }
 
 .glitch::before {
 	content: attr(data-text);
