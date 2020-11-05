@@ -1,20 +1,25 @@
 <template>
 	<div>
-   <div> <Nav /></div>
-    
-    <router-view/>
-    
+		<div><Nav /></div>
+
+		<router-view />
 	</div>
 </template>
 
 <script>
-import Nav from './components/Nav.vue'
+import axios from 'axios';
+import Nav from './components/Nav.vue';
 export default {
 	name: 'App',
-  components: {
-  Nav
-}
-}
+
+	async created() {
+		const response = await axios.get('/profile');
+		this.$store.dispatch('profile', response.data);
+	},
+	components: {
+		Nav,
+	},
+};
 </script>
 
 <style>
@@ -153,8 +158,8 @@ section {
 	align-items: center;
 	font-weight: var(--font-semi);
 }
-.nav_logo{
-    color: var(--first-color)
+.nav_logo {
+	color: var(--first-color);
 }
 @media screen and (max-width: 767px) {
 	.nav__menu {
@@ -232,7 +237,6 @@ section {
 	right: 0;
 }
 
-
 @media screen and (min-width: 766px) {
 	.section {
 		padding-top: 4rem;
@@ -271,10 +275,8 @@ section {
 		color: var(--second-color);
 	}
 
-	
-
-	
+	.down {
+		margin-bottom: 1.5rem;
+	}
 }
-
-
 </style>

@@ -57,7 +57,9 @@ export default {
         password: this.password
       })
      localStorage.setItem('token', response.data.token)
-     this.$router.push
+     this.$store.dispatch('profile', response.data)
+     this.$router.push('/')
+     console.log(response.data)
     }
   }
 };

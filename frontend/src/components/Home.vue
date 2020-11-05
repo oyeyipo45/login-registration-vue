@@ -1,26 +1,26 @@
 <template>
 	<div class="home-page">
-
-    <h3 v-if="profile">Hello, {{profile.firstName}}  {{profile.lastName}} </h3>
-		<h3 v-if="!profile"> Hello, Please Sign In or Register</h3>
-    <p class="home-message">Welcome to the home Page</p>
+		<h3 v-if="profile">
+			Hello, {{ profile.firstName }} {{ profile.lastName }}
+		</h3>
+		<div class="welcome-container">
+			<h3 class="welcome-message" v-if="!profile">
+				Hello, Please Sign In or Register
+			</h3>
+			<p><i class="bx bxs-up-arrow-circle bx-flashing"></i></p>
+		</div>
+		<h1 class="home-message">Welcome Home</h1>
 	</div>
 </template>
 
 <script>
-import axios from 'axios';
+import { mapGetters } from 'vuex';
+
 export default {
 	name: 'Home',
-  data() {
-    return {
-      profile: null
-    }
-  },
-	async created() {
-		const response = await axios.get('/profile');
-
-		this.profile = response.data
-	}
+	computed: {
+		...mapGetters(['profile']),
+	},
 };
 </script>
 
@@ -46,5 +46,22 @@ export default {
 	justify-content: center;
 	align-items: center;
 	border: 1px solid blue;
+	color: var(--second-color);
+}
+
+.welcome-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border: 1px solid red;
+}
+
+.bx-flashing {
+	font-size: 2rem;
+	color: blue;
+}
+
+.welcome-message {
+	color: var(--second-color);
 }
 </style>
