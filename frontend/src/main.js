@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router';
 import './axios';
 import store from "./vuex";
+import VueScrollReveal from 'vue-scroll-reveal';
 
 Vue.config.productionTip = false;
 
@@ -40,4 +41,7 @@ function linkAction() {
 
 navLink.forEach((n) => n.addEventListener('click', linkAction));
 
+
+
+Vue.use(VueScrollReveal);
 

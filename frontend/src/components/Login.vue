@@ -2,15 +2,19 @@
 	<div class="customer-signin">
 		<div class="customer-signin-header">
 			<h3 class="customer-signin-heading">Log In</h3>
+
 			<img src="/assets/icons/close.svg" alt="" class="customer-signin-close" />
 		</div>
+		<span > <error class="error"  v-if="error" :error="error" />  </span>
 		<form action="" @submit.prevent="handleSubmit" class="customer-signin-form">
+			
 			<div class="customer-signin-form-group">
 				<input
 					type="email"
 					v-model="email"
 					class="customer-signin-form-input"
 					placeholder="Email Address"
+					required
 				/>
 			</div>
 			<div class="customer-signin-form-group">
@@ -19,18 +23,8 @@
 					v-model="password"
 					class="customer-signin-form-input"
 					placeholder="Password"
+					required
 				/>
-			</div>
-			<div class="customer-signin-form-group">
-				<input
-					id="remember-me"
-					type="checkbox"
-					name="remember_status"
-					checked
-				/>
-				<label for="remember-me" class="customer-signin-form-label"
-					>Remember me</label
-				>
 			</div>
 			<div class="customer-signin-form-group">
 				<button class="customer-signin-btn">Log In</button>
@@ -41,27 +35,36 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import Error from './Error.vue';
 export default {
 	name: 'Login',
 	data() {
 		return {
 			email: '',
 			password: '',
+			error: '',
 		};
 	},
-  methods: {
-    async handleSubmit() {
-      const response = await axios.post('/login', {
-        email: this.email,
-        password: this.password
-      })
-     localStorage.setItem('token', response.data.token)
-     this.$store.dispatch('profile', response.data)
-     this.$router.push('/')
-     console.log(response.data)
-    }
-  }
+	components: {
+		Error,
+	},
+	methods: {
+		async handleSubmit() {
+			try {
+				const response = await axios.post('/login', {
+					email: this.email,
+					password: this.password,
+				});
+				localStorage.setItem('token', response.data.token);
+				this.$store.dispatch('profile', response.data);
+				this.$router.push('/');
+				
+			} catch (e) {
+				this.error = e.response.data;
+			}
+		},
+	},
 };
 </script>
 
@@ -117,13 +120,19 @@ export default {
 	display: block;
 	padding: 0.85rem 1.85rem;
 	border: 1px solid #e0e8f3;
-	border-radius: 2px;
+	border-radius: 5px;
 }
+
+.customer-signin-form-input:focus,
+.customer-signup-form-input:focus,
+.change-password-form-input:focus {
+	box-shadow: inset 0 0 0 2px #b9c6d8;
+}
+
 .customer-signin-form-input::placeholder,
 .customer-signup-form-input::placeholder,
 .change-password-form-input::placeholder {
 	font-size: 14px;
-	font-weight: var(--fw-light);
 	color: #b9c6d8;
 	letter-spacing: 1px;
 }
@@ -145,6 +154,8 @@ export default {
 	margin: 3rem 0;
 	border-radius: 7px;
 	background-color: #6263ba;
+	border: 0px solid white;
+	outline: none;
 	color: white;
 	transition: all 0.3s ease-in-out;
 }
@@ -175,10 +186,6 @@ export default {
 	.customer-signin,
 	.customer-signup {
 		height: auto;
-	}
-	.customer-signup-btn {
-		margin: 1rem 0;
-		grid-column: 2 / -1;
 	}
 }
 </style>

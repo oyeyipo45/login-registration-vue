@@ -11,7 +11,6 @@
 				</p>
 				
 				<p class="down">Email : {{ profile.email }}</p>
-				<p class="down">Last Time Logged IN: {{ profile.lastName }}</p>
 			</div>
 		</section>
 	</div>
@@ -27,3 +26,22 @@ export default {
 	},
 };
 </script>
+
+
+<style >
+	.profile{
+		width: 95%;
+		margin: 5rem auto;
+	}
+
+
+	@media screen and  (max-width: 768px) {
+		.profile{
+			padding: 2%;
+		}
+
+		.down {
+			margin-bottom: 1.5rem;
+		}
+	}
+</style>

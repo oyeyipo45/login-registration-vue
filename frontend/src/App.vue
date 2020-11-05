@@ -7,15 +7,11 @@
 </template>
 
 <script>
-import axios from 'axios';
 import Nav from './components/Nav.vue';
 export default {
 	name: 'App',
 
-	async created() {
-		const response = await axios.get('/profile');
-		this.$store.dispatch('profile', response.data);
-	},
+	
 	components: {
 		Nav,
 	},
@@ -108,6 +104,16 @@ img {
 	display: block;
 }
 
+.error{
+	height: 4rem;
+	padding: .5rem 0rem;
+	color: red;
+	background-color: pink;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 /* sections  */
 
 .section-title {
@@ -138,6 +144,7 @@ section {
 .bd-grid {
 	max-width: 1200px;
 	margin: 0 auto;
+	padding: 2rem;
 }
 
 /* nav */
@@ -178,6 +185,7 @@ section {
 		max-width: 600px;
 		left: 0;
 		right: 0;
+		padding: 0;
 		margin: 0 auto;
 	}
 
